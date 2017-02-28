@@ -1,8 +1,13 @@
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 window.onload = function () {
     var canvas = document.getElementById("myCanvas");
     var context = canvas.getContext("2d");
@@ -10,7 +15,7 @@ window.onload = function () {
     container.alpha = 1;
     var image = new Bitmap();
     image.alpha = 0.5;
-    image.src = "captain.jpg";
+    image.src = "rider.jpg";
     image.scaleX = 2;
     image.scaleY = 1;
     image.x = 0;
@@ -66,8 +71,9 @@ var DisplayObject = (function () {
 var DisplayObjectContainer = (function (_super) {
     __extends(DisplayObjectContainer, _super);
     function DisplayObjectContainer() {
-        _super.apply(this, arguments);
-        this.list = [];
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.list = [];
+        return _this;
     }
     DisplayObjectContainer.prototype.render = function (context) {
         console.log("相对矩阵：" + this.relativeMatrix.tx);
@@ -86,11 +92,12 @@ var DisplayObjectContainer = (function (_super) {
 var TextField = (function (_super) {
     __extends(TextField, _super);
     function TextField() {
-        _super.apply(this, arguments);
-        this.text = "";
-        this.color = "";
-        this.fontSize = 10;
-        this.fontName = "";
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.text = "";
+        _this.color = "";
+        _this.fontSize = 10;
+        _this.fontName = "";
+        return _this;
     }
     TextField.prototype.render = function (context) {
         context.fillStyle = this.color;
@@ -105,11 +112,12 @@ var TextField = (function (_super) {
 var Bitmap = (function (_super) {
     __extends(Bitmap, _super);
     function Bitmap() {
-        _super.call(this);
-        this.image = null;
-        this.isLoaded = false;
-        this._src = "";
-        this.image = document.createElement("img");
+        var _this = _super.call(this) || this;
+        _this.image = null;
+        _this.isLoaded = false;
+        _this._src = "";
+        _this.image = document.createElement("img");
+        return _this;
     }
     Object.defineProperty(Bitmap.prototype, "src", {
         set: function (value) {
